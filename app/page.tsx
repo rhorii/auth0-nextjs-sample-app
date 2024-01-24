@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Login from "./Login";
+import Logout from "./Logout";
 
 export default function Home() {
   return (
@@ -112,6 +113,7 @@ export default function Home() {
 
       <div>
         <Login />
+        <Logout />
       </div>
     </main>
   );
