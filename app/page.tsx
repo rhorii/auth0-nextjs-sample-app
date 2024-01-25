@@ -1,8 +1,13 @@
 import Image from "next/image";
 import Login from "./Login";
 import Logout from "./Logout";
+import { getSession } from "@auth0/nextjs-auth0";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+  const user = session?.user;
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -112,8 +117,9 @@ export default function Home() {
       </div>
 
       <div>
-        <Login />
-        <Logout />
+        {!user ? <Login /> : <Logout />} |{" "}
+        <Link href="/profile-client">/profile-client</Link> |{" "}
+        <Link href="/profile-server">/profile-server</Link>
       </div>
     </main>
   );
